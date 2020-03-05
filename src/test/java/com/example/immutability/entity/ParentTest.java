@@ -9,6 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParentTest {
@@ -31,6 +32,8 @@ class ParentTest {
                 .name("parent")
                 .children(mutableChildren)
                 .build();
+
+        assertThat(parent.getChildren(), not(sameInstance(mutableChildren)));
 
         final Child child3 = Child.builder().name("child-3").build();
         mutableChildren.add(child3);
